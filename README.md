@@ -1,3 +1,24 @@
+# Auditd Wazuh integration
+## On Linux agent machines, run following commands to enable auditd and load these rules
+```
+apt update -y
+apt install auditd audispd-plugins -y
+wget https://raw.githubusercontent.com/0xbad53c/auditd/master/audit.rules -O /etc/audit/rules.d/audit.rules
+systemctl enable auditd.service
+systemctl start auditd.service
+```
+
+## On Wazuh manager instance, run following commands to make wazuh parse correctly
+```
+wget https://raw.githubusercontent.com/0xbad53c/auditd/master/audit-keys -O /var/ossec/etc/lists/audit-keys
+systemctl restart wazuh-manager
+```
+
+
+
+Original README below.
+
+
         ___             ___ __      __
        /   | __  ______/ (_) /_____/ /
       / /| |/ / / / __  / / __/ __  / 
