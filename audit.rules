@@ -418,9 +418,9 @@
 
 ## Remove them if they cause to much volume in your environment
 
-## Root command executions
--a always,exit -F arch=b64 -F euid=0 -S execve -k rootcmd
--a always,exit -F arch=b32 -F euid=0 -S execve -k rootcmd
+## Root command executions - disabled
+#-a always,exit -F arch=b64 -F euid=0 -S execve -k rootcmd
+#-a always,exit -F arch=b32 -F euid=0 -S execve -k rootcmd
 
 ## File Deletion Events by User - removed
 
