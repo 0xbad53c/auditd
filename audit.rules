@@ -422,6 +422,10 @@
 #-a always,exit -F arch=b64 -F euid=0 -S execve -k rootcmd
 #-a always,exit -F arch=b32 -F euid=0 -S execve -k rootcmd
 
+## User commands, even when sudo'ed to root
+-a exit,always -F arch=b64 -F auid>=1000 -F auid!=-1 -S execve -k audit-wazuh-c
+-a exit,always -F arch=b32 -F auid>=1000 -F auid!=-1 -S execve -k audit-wazuh-c
+
 ## File Deletion Events by User - removed
 
 ## File Access
