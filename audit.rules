@@ -90,10 +90,10 @@
 -a never,exit -F arch=b64 -S fork -F success=0 -F path=/usr/lib/vmware-tools -F subj_type=initrc_t -F exit=-2
 
 ### High Volume Event Filter (especially on Linux Workstations)
--a never,exit -F arch=b32 -F dir=/dev/shm -k sharedmemaccess
--a never,exit -F arch=b64 -F dir=/dev/shm -k sharedmemaccess
--a never,exit -F arch=b32 -F dir=/var/lock/lvm -k locklvm
--a never,exit -F arch=b64 -F dir=/var/lock/lvm -k locklvm
+-a exit,never -F arch=b32 -F dir=/dev/shm -k sharedmemaccess
+-a exit,never -F arch=b64 -F dir=/dev/shm -k sharedmemaccess
+-a exit,never -F arch=b32 -F dir=/var/lock/lvm -k locklvm
+-a exit,never -F arch=b64 -F dir=/var/lock/lvm -k locklvm
 
 ## Custom log exclusions to reduce load on Wazuh
 ### Exclude SYSTEM and daemon events where uid = 0 (might make blind to some privesc, but will avoid logging many non-relevant actions)
