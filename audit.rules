@@ -79,10 +79,10 @@
 ## This prevents chrony from overwhelming the logs
 #-a never,exit -F arch=b64 -S adjtimex -F auid=unset -F uid=chrony -F subj_type=chronyd_t
 -a never,exit -F arch=b64 -S adjtimex -F auid=unset -F uid=106 -F subj_type=chronyd_t
--a never,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F uid=106
--a never,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F uid=106
--a never,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F uid=106
--a never,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F uid=106
+#-a never,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F uid=106
+#-a never,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F uid=106
+#-a never,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F uid=106
+#-a never,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F uid=106
 
 ## This is not very interesting and wastes a lot of space if the server is public facing
 -a always,exclude -F msgtype=CRYPTO_KEY_USER
@@ -106,6 +106,7 @@
 -a never,exclude -F path=/etc/hostname -F auid=0
 
 ### exclude wazuh and desktopcentral stuff
+-a never,exit -F arch=b64 -S execve -F exe=/var/ossec/bin/wazuh
 -a never,exit -F arch=b64 -S execve -F exe=/var/ossec/bin/agent-auth
 -a never,exit -F arch=b64 -S execve -F exe=/var/ossec/bin/manage_agents
 -a never,exit -F arch=b64 -S execve -F exe=/var/ossec/bin/wazuh-agentd
@@ -234,16 +235,16 @@
 -a always,exit -F arch=b64 -S sethostname -S setdomainname -k network_modifications
 
 ### Successful IPv4 Connections
--a always,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F key=network_connect_4
--a always,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F key=network_connect_4
--a always,exit -F arch=b64 -S accept -F a2=16 -F success=1 -F key=network_connect_4
--a always,exit -F arch=b32 -S accept -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b64 -S accept -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b32 -S accept -F a2=16 -F success=1 -F key=network_connect_4
 
 ### Successful IPv6 Connections
--a always,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F key=network_connect_6
--a always,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F key=network_connect_6
--a always,exit -F arch=b64 -S accept -F a2=28 -F success=1 -F key=network_connect_6
--a always,exit -F arch=b32 -S accept -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b64 -S accept -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b32 -S accept -F a2=28 -F success=1 -F key=network_connect_6
 
 
 ### Changes to other files
