@@ -77,6 +77,10 @@
 ## This prevents chrony from overwhelming the logs
 -a never,exit -F arch=b64 -S adjtimex -F auid=unset -F uid=chrony -F subj_type=chronyd_t
 -a never,exit -F arch=b64 -S adjtimex -F auid=unset -F uid=106 -F subj_type=chronyd_t
+-a never,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F uid=106
+-a never,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F uid=106
+-a never,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F uid=106
+-a never,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F uid=106
 
 ## This is not very interesting and wastes a lot of space if the server is public facing
 -a always,exclude -F msgtype=CRYPTO_KEY_USER
