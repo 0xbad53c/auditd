@@ -27,7 +27,9 @@
 # 		https://github.com/linux-audit/audit-userspace/blob/master/rules/30-pci-dss-v31.rules
 # 	For NISPOM compliance see:
 # 		https://github.com/linux-audit/audit-userspace/blob/master/rules/30-nispom.rules
-
+# -a – Append rule to the end of list with action.
+# never – No audit records will be generated.
+# exclude – Add a rule to the event type exclusion filter list
 # Remove any existing rules
 -D
 
@@ -97,11 +99,11 @@
 
 ## Custom log exclusions to reduce load on Wazuh
 ### Exclude SYSTEM and daemon events where uid = 0 (might make blind to some privesc, but will avoid logging many non-relevant actions)
--a always,exclude -F uid=0 -F auid=4294967295
--a always,exclude -F path=/etc/hostname -F auid=0
+-a never,exclude -F uid=0 -F auid=4294967295
 -a never,exit -F arch=b64 -S execve -F exe=/bin/hostname -F auid=0
 -a never,exit -F arch=b32 -S execve -F exe=/bin/hostname -F auid=0
--a always,exclude -F dir=/etc/sudoers.d -F auid=0
+-a never,exclude -F dir=/etc/sudoers.d -F auid=0
+-a never,exclude -F path=/etc/hostname -F auid=0
 
 ### exclude wazuh and desktopcentral stuff
 -a never,exit -F arch=b64 -S execve -F exe=/var/ossec/bin/agent-auth
