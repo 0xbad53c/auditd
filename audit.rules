@@ -220,8 +220,8 @@
 #-w /etc/localtime -p wa -k localtime
 
 ## Stunnel
--w /usr/sbin/stunnel -p x -k stunnel
--w /usr/bin/stunnel -p x -k stunnel
+#-w /usr/sbin/stunnel -p x -k stunnel
+#-w /usr/bin/stunnel -p x -k stunnel
 
 ## Cron configuration & scheduled jobs
 -w /etc/cron.allow -p wa -k cron
@@ -247,16 +247,16 @@
 -w /etc/sudoers.d/ -p wa -k actions
 
 ## Passwd
--w /usr/bin/passwd -p x -k passwd_modification
+#-w /usr/bin/passwd -p x -k passwd_modification
 
 ## Tools to change group identifiers
--w /usr/sbin/groupadd -p x -k group_modification
--w /usr/sbin/groupmod -p x -k group_modification
--w /usr/sbin/addgroup -p x -k group_modification
--w /usr/sbin/useradd -p x -k user_modification
--w /usr/sbin/userdel -p x -k user_modification
--w /usr/sbin/usermod -p x -k user_modification
--w /usr/sbin/adduser -p x -k user_modification
+#-w /usr/sbin/groupadd -p x -k group_modification
+#-w /usr/sbin/groupmod -p x -k group_modification
+#-w /usr/sbin/addgroup -p x -k group_modification
+#-w /usr/sbin/useradd -p x -k user_modification
+#-w /usr/sbin/userdel -p x -k user_modification
+#-w /usr/sbin/usermod -p x -k user_modification
+#-w /usr/sbin/adduser -p x -k user_modification
 
 ## Login configuration and information - disabled
 #-w /etc/login.defs -p wa -k login
@@ -271,15 +271,15 @@
 -a always,exit -F arch=b64 -S sethostname -S setdomainname -k network_modifications
 
 ### Successful IPv4 Connections
--a always,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F key=network_connect_4
--a always,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F key=network_connect_4
--a always,exit -F arch=b64 -S accept -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b64 -S connect -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b32 -S connect -F a2=16 -F success=1 -F key=network_connect_4
+#-a always,exit -F arch=b64 -S accept -F a2=16 -F success=1 -F key=network_connect_4
 #-a always,exit -F arch=b32 -S accept -F a2=16 -F success=1 -F key=network_connect_4
 
 ### Successful IPv6 Connections
--a always,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F key=network_connect_6
--a always,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F key=network_connect_6
--a always,exit -F arch=b64 -S accept -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b32 -S connect -F a2=28 -F success=1 -F key=network_connect_6
+#-a always,exit -F arch=b64 -S accept -F a2=28 -F success=1 -F key=network_connect_6
 #-a always,exit -F arch=b32 -S accept -F a2=28 -F success=1 -F key=network_connect_6
 
 
@@ -345,18 +345,18 @@
 -a always,exit -F arch=b64 -S open -F dir=/srv -F success=0 -k unauthedfileaccess
 
 ## Process ID change (switching accounts) applications
--w /bin/su -p x -k priv_esc-x
--w /usr/bin/sudo -p x -k priv_esc-x
--w /etc/sudoers -p r -k priv_esc-r
+#-w /bin/su -p x -k priv_esc-x
+#-w /usr/bin/sudo -p x -k priv_esc-x
+#-w /etc/sudoers -p r -k priv_esc-r
 -w /etc/sudoers -p w -k priv_esc-w
--w /etc/sudoers.d -p r -k priv_esc-r
+#-w /etc/sudoers.d -p r -k priv_esc-r
 -w /etc/sudoers.d -p w -k priv_esc-w
 
 ## Power state
--w /sbin/shutdown -p x -k power
--w /sbin/poweroff -p x -k power
--w /sbin/reboot -p x -k power
--w /sbin/halt -p x -k power
+#-w /sbin/shutdown -p x -k power
+#-w /sbin/poweroff -p x -k power
+#-w /sbin/reboot -p x -k power
+#-w /sbin/halt -p x -k power
 
 ## Session initiation information
 -w /var/run/utmp -p wa -k session
